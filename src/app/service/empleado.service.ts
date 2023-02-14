@@ -18,11 +18,15 @@ export class EmpleadoService {
     return this.httpClient.get<Empleado[]>(`${this.apiServerUrl}/empleado/obtenerEmpleados`);
   }
 
-  public agregarEmpleado(empleado: |Empleado): Observable<|Empleado> {
+  public agregarEmpleado(empleado: Empleado): Observable<Empleado> {
     return this.httpClient.post<Empleado>(`${this.apiServerUrl}/empleado/agregar`, empleado);
   }
 
-  public actualizarEmpleado(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.apiServerUrl}/empleado/actualizar/${id}`);
+  public actualizarEmpleado(empleado: Empleado): Observable<Empleado> {
+    return this.httpClient.put<Empleado>(`${this.apiServerUrl}/empleado/actualizar`, empleado);
+  }
+
+  public deleteEmployee(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiServerUrl}/empleado/eliminar/${id}`);
   }
 }
