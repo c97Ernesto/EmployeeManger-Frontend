@@ -26,7 +26,7 @@ export class EmpleadoService {
     return this.httpClient.put<Empleado>(`${this.apiServerUrl}/empleado/actualizar`, empleado);
   }
 
-  public deleteEmployee(id: number): Observable<void> {
+  public eliminarEmpleado(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiServerUrl}/empleado/eliminar/${id}`);
   }
 }

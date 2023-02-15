@@ -12,7 +12,7 @@
          </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-         <input type="search" #key="ngModel" ngModel name="key" id="searchName" class="form-control mr-sm-2"
+         <input type="search" (ngModelChange)="buscarEmpleados(palabraClave.value)" #palabraClave="ngModel"  ngModel name="palabraClave" id="searchName" class="form-control mr-sm-2"
             placeholder="Search employees..." required>
       </form>
    </div>
@@ -151,16 +151,16 @@
       <div class="modal-dialog" role="document">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title" id="deleteModelLabel">Delete Employee</h5>
+               <h5 class="modal-title" id="deleteModelLabel">Eliminar Empleado</h5>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                </button>
             </div>
             <div class="modal-body">
-               <p></p>
+               <p>Seguro que se desea eliminar el empleado {{deleteEmpleado?.nombre}}</p>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                  <button class="btn btn-danger" data-dismiss="modal">Yes</button>
+                  <button (click)="onEliminarEmpleado(deleteEmpleado?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
                </div>
             </div>
          </div>
@@ -169,7 +169,7 @@
 </div>
 
 <!-- Notification for no employees -->
-<div class="col-lg-12 col-md-12 col-xl-12">
+<div *ngIf="empleados.length == 0" class="col-lg-12 col-md-12 col-xl-12">
    <div class="alert alert-info" role="alert">
       <h4 class="alert-heading">NO EMPLOYEES!</h4>
       <p>No Employees were found.</p>
